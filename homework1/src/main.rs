@@ -1,3 +1,7 @@
+fn is_even(n: i32) -> bool {
+    true
+}
+
 fn fahrenheit_to_celsius(f: f64) -> f64 {
     let newTemp = (f - 32.0) / 1.8;
     newTemp
@@ -9,6 +13,8 @@ fn celsius_to_fahrenheit(c: f64) -> f64 {
 }
 
 fn main() {
+    // Part 1
+    //
     // vars we need
     const frzTemp:f64  = 32.00;
     let mut usrTemp = 32.00;
@@ -27,4 +33,6 @@ fn main() {
         
     }
 
+    // Part 2
+    let nums = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
 }
