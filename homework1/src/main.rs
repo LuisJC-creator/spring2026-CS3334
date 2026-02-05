@@ -1,4 +1,18 @@
 fn check_guess(guess: i32, secret: i32) -> i32 {
+    let mut guess = guess;
+    let mut secret = secret;
+
+    if guess == secret {
+        return 0;
+    }
+    else if guess > secret {
+        return 1;
+    }
+    else {
+        return -1;
+    }
+
+
 
 }
 
@@ -100,10 +114,13 @@ fn main() {
     println!("The largest element in the array is: {}", largest);
 
     // PART 3
+    // (i dont really understand the point of this without user input)
     //
-    //
-
+    let mut guess = 40;
     let mut secret = 40;
-    
+    while(check_guess(guess,secret) != 0){
+        println!("Guess is incorrect.");
+    }
+    println!("Guess is correct.");
 
 }
