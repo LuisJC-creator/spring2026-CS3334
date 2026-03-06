@@ -22,12 +22,11 @@ fn load_books(filename: &str) -> Vec<Book> {
     let book = File::open(filename).unwrap();
     let wrapped_book = BufReader::new(book);
     let mut book_vec: Vec<Book> = Vec::new();
-    let mut i = 0;
     for line in wrapped_book.lines(){
         let line = line.unwrap();
         let parts: Vec<&str> = line.split(',').collect();
-        book_vec.push(parts[i]);
-        i += 1;
+        book_vec.push(Book { title: parts[0].to_string(), author: parts[1].to_string(), year: parts[2].parse::<u16>().unwrap() }); // i love rust, trying to figure this out was so fun :)
+
     }
     book_vec
 }
