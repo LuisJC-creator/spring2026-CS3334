@@ -2,6 +2,8 @@ use rand::{SeedableRng, Rng};
 use rand::rngs::StdRng;
 use std::collections::VecDeque;
 use std::sync::{Arc, Mutex};
+use std::thread;
+use std::time::Duration;
 
 #[derive(Debug, Clone, Copy)]
 pub enum TaskKind {
@@ -68,9 +70,49 @@ fn generate_tasks() -> Vec<Task> {
 }
 
 fn main() {
+    
     let queue = Arc::new(Mutex::new(TaskQueue::new()));
     let done = Arc::new(Mutex::new(false));
     let monitor_data = Arc::new(Mutex::new(MonitorData { snapshots: Vec::new() }));
 
-    // TODO create threads
+    
+    let queue_sender = Arc::clone(&queue);
+    let done_sender = Arc::clone(&done);
+    let sender_handle = thread::spawn(move || {
+    let tasks = generate_tasks();
+        for task in tasks {
+        thread::sleep(...);
+        
+        }
+      
+    });
+
+    
+    let mut worker_handles = Vec::new();
+    for _ in 0..8 {
+        let queue_worker = Arc::clone(&queue);
+        let done_worker = Arc::clone(&done);
+        let monitor_worker = Arc::clone(&monitor_data);
+        let handle = thread::spawn(move || {
+            
+        });
+        worker_handles.push(handle);
+    }
+
+    
+    let queue_monitor = Arc::clone(&queue);
+    let done_monitor = Arc::clone(&done);
+    let monitor_data_monitor = Arc::clone(&monitor_data);
+    let monitor_handle = thread::spawn(move || {
+        
+    });
+    
+    
+    sender_handle.join().unwrap();
+    
+    for h in worker_handles { 
+        h.join().unwrap(); 
+    }
+    
+    monitor_handle.join().unwrap();
 }
